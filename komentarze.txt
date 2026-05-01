@@ -1,0 +1,54 @@
+
+// węzły
+//mnpm, x, y, s - węzeł skomunikowany (przynajmniej 1)
+4
+859 5 1 s 
+919 3 6
+879 1 2 s
+1120 2 9
+
+// wyciągi
+// nr początkowego węzła
+// nr końcowego węzła
+// odstęp czasowy między kolejnymi grupami
+// maksymalna wielkość grupy pasażerów
+// czas przejazdu w jedną stronę [sekundy]
+2
+0 1 10 4 240
+2 3 8 6 360
+
+
+// trasy
+// nr pocz wezla
+// nr konc wezla
+// poziom trudności (0-10)
+// czas przejazdu [sekundy]
+// bazowa atrakcyjność niewyrównanej trasy
+// odporność trasy przeciw tworzeniu się nierówności
+
+4
+1 0 3 150 0.3 0.9998
+3 1 7 180 0.3 0.9997
+1 2 4 120 0.3 0.9998
+2 0 2 60 0.3 0.99985
+
+// grupy sportowców
+// numerowani l. całkowitymi od 0
+// kolejność w każdej grupie zgodnie z kolejnością pojawiania się na stoku
+// Opis jednej grupy składa się z trzech linii
+5
+180 3 0.1 // l. sportowców, poziom zaawansowania, wsp. spontaniczności, s - jeśli śledzeni
+1 0 // wagi atrakcyjności - dopasowania poziomu, wyrównania nawierzchni
+0 09:00:00 15 // nr startowego węzła, godzina rozpoczęcia dnia (HH:MM:SS) pierwszego z grupy, jeśli więcej niż jeden, czasowy odstęp między początkami dnia kolejnych sportowców
+120 7 0.1
+1 0
+2 09:00:00 20
+1 2 0 s
+0.8 0.2
+0 09:05:30
+1 10 0 s
+0.8 0.2
+0 09:10:00
+1 5 1 s
+0.8 0.2
+2 09:15:00
