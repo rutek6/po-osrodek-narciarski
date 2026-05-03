@@ -30,4 +30,6 @@ public abstract class Krawedz {
     }
 
     public abstract Czas getCzasDotarcia(Czas obecnyCzas);
+
+    public abstract void przetworzStart(KolejkaZdarzen kolejka, Czas obecnyCzas, Sportowiec sportowiec);
 }

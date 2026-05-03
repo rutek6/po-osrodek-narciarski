@@ -16,7 +16,6 @@ public class PrzybycieDoWezla extends Zdarzenie {
     @Override
     public void przetworz(KolejkaZdarzen kolejka) {
         Krawedz wybrana = wybierzDroge();
-        Zdarzenie noweZdarzenie = new StartTrasy(sportowiec, this.getCzas(), wybrana);
-        kolejka.dodaj(noweZdarzenie);
+        wybrana.przetworzStart(kolejka, this.getCzas());
     }
 }

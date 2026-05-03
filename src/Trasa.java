@@ -17,6 +17,12 @@ public class Trasa extends Krawedz {
         return wynik;
     }
 
+    @Override
+    public void przetworzStart(KolejkaZdarzen kolejka, Czas obecnyCzas, Sportowiec sportowiec) {
+        Czas czasDotarcia = obecnyCzas.dodaj(this.getCzas());
+        PrzybycieDoWezla noweZdarzenie = new PrzybycieDoWezla(sportowiec, czasDotarcia, this.getKoniec());
+    }
+
     public String toString() {
         return "-----TRASA----- \n"
                 + "Numer: "

@@ -11,8 +11,11 @@ public class Wyciag extends Krawedz {
     }
 
     @Override
-    public Czas getCzasDotarcia(Czas obecnyCzas) {
-        return new Czas(0);
+    public void przetworzStart(KolejkaZdarzen kolejka, Czas obecnyCzas, Sportowiec sportowiec) {
+        Czas czasDotarcia = this.getCzasDotarcia(obecnyCzas);
+        oczekujacy.dodaj(sportowiec);
+
+        PrzybycieDoWezla noweZdarzenie = new PrzybycieDoWezla();
     }
 
     public String toString() {
