@@ -26,6 +26,13 @@ public class Czas {
         this(h, m, s);
     }
 
+    public Czas dodaj(Czas x) {
+        int sekundy_this = zamienNaSekundy(this);
+        int sekundy_x = zamienNaSekundy(x);
+        int wynik = sekundy_this + sekundy_x;
+        return new Czas(wynik);
+    }
+
     public static Czas stringNaCzas(String str) {
         String[] czesci = str.split(":");
         int h = Integer.parseInt(czesci[0]);

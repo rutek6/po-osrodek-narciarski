@@ -28,4 +28,6 @@ public abstract class Krawedz {
     public Czas getCzas() {
         return czasPrzejazdu;
     }
+
+    public abstract Czas getCzasDotarcia(Czas obecnyCzas);
 }

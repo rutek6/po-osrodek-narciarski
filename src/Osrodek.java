@@ -13,7 +13,7 @@ public class Osrodek {
     private int liczbaSportowcow = 0;
 
     private Czas obecnyCzas = new Czas(9, 0, 0);
-    private Kolejka kolejka = new Kolejka();
+    private KolejkaZdarzen kolejka = new KolejkaZdarzen();
 
     public Wezel getWezel(int numer) {
         return wezly[numer];
@@ -84,5 +84,13 @@ public class Osrodek {
             return;
         sportowcy[indeksSportowcow] = x;
         indeksSportowcow++;
+    }
+
+    public void przeprowadzSymulacje() {
+        Zdarzenie x = kolejka.wez();
+        while (x != null) {
+            x.przetworz(kolejka);
+            kolejka.wez();
+        }
     }
 }

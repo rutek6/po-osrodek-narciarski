@@ -1,13 +1,18 @@
 public class Wyciag extends Krawedz {
     private Czas odstep;
     private int maxPasazerow;
-    private Kolejka oczekujacy;
+    private KolejkaWyciagu oczekujacy;
 
     public Wyciag(int nr, Wezel p, Wezel k, Czas c, Czas od, int max) {
         super(p, k, c, nr);
         odstep = od;
         maxPasazerow = max;
-        oczekujacy = new Kolejka();
+        oczekujacy = new KolejkaWyciagu();
+    }
+
+    @Override
+    public Czas getCzasDotarcia(Czas obecnyCzas) {
+        return new Czas(0);
     }
 
     public String toString() {

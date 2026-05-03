@@ -10,6 +10,13 @@ public class Trasa extends Krawedz {
         odpornosc = o;
     }
 
+    @Override
+    public Czas getCzasDotarcia(Czas obecnyCzas) {
+        Czas wynik;
+        wynik = obecnyCzas.dodaj(this.getCzas());
+        return wynik;
+    }
+
     public String toString() {
         return "-----TRASA----- \n"
                 + "Numer: "
