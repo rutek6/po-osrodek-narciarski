@@ -7,15 +7,19 @@ public class Wyciag extends Krawedz {
         super(p, k, c, nr);
         odstep = od;
         maxPasazerow = max;
-        oczekujacy = new KolejkaWyciagu();
+        oczekujacy = new KolejkaWyciagu(this);
     }
 
-    @Override
-    public void przetworzStart(KolejkaZdarzen kolejka, Czas obecnyCzas, Sportowiec sportowiec) {
-        Czas czasDotarcia = this.getCzasDotarcia(obecnyCzas);
-        oczekujacy.dodaj(sportowiec);
+    public int getMax() {
+        return maxPasazerow;
+    }
 
-        PrzybycieDoWezla noweZdarzenie = new PrzybycieDoWezla();
+    public Czas getOdstep() {
+        return odstep;
+    }
+
+    public KolejkaWyciagu getKolejka() {
+        return oczekujacy;
     }
 
     public String toString() {
@@ -33,6 +37,11 @@ public class Wyciag extends Krawedz {
                 + "\nCzas przejazdu: "
                 + this.getCzas()
                 + "\n";
+    }
+
+    @Override
+    public void przetworzStart(Sportowiec s, Czas c, KolejkaZdarzen k) {
+        oczekujacy.dodaj(s);
     }
 
 }

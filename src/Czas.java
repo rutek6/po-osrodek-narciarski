@@ -33,6 +33,15 @@ public class Czas {
         return new Czas(wynik);
     }
 
+    public int roznica(Czas x) {
+        int sekundy_this = zamienNaSekundy(this);
+        int sekundy_x = zamienNaSekundy(x);
+        int wynik = sekundy_this - sekundy_x;
+        if (wynik < 0)
+            wynik = -wynik;
+        return wynik;
+    }
+
     public static Czas stringNaCzas(String str) {
         String[] czesci = str.split(":");
         int h = Integer.parseInt(czesci[0]);

@@ -29,7 +29,5 @@ public abstract class Krawedz {
         return czasPrzejazdu;
     }
 
-    public abstract Czas getCzasDotarcia(Czas obecnyCzas);
-
-    public abstract void przetworzStart(KolejkaZdarzen kolejka, Czas obecnyCzas, Sportowiec sportowiec);
+    public abstract void przetworzStart(Sportowiec s, Czas c, KolejkaZdarzen k);
 }

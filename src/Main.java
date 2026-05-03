@@ -154,5 +154,6 @@ public class Main {
 
         Osrodek osrodek = new Osrodek();
         parser(osrodek);
+        osrodek.przeprowadzSymulacje();
     }
 }

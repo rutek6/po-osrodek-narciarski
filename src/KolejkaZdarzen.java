@@ -55,6 +55,10 @@ public class KolejkaZdarzen {
     }
 
     public void dodaj(Zdarzenie x) {
+        if (start == null) {
+            start = new Wezel(x);
+            koniec = start;
+        }
         Wezel poprzedni = koniec;
         while (x.getCzas().compareTo(poprzedni.getWartosc().getCzas()) <= 0 && poprzedni != null) {
             poprzedni = poprzedni.getPop();

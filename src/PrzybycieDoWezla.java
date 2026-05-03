@@ -10,12 +10,18 @@ public class PrzybycieDoWezla extends Zdarzenie {
     }
 
     private Krawedz wybierzDroge() {
-        return new Trasa(1, null, null, null, 1, 1, 1);
+        Trasa[] trasy = wezel.getTrasy();
+        Wyciag[] wyciagi = wezel.getWyciagi();
+        if (this.getCzas().zamienNaSekundy() % 2 == 0)
+            return trasy[0];
+        else
+            return wyciagi[0];
     }
 
     @Override
     public void przetworz(KolejkaZdarzen kolejka) {
+        System.out.println("Sportowiec " + sportowiec.getNumer() + "przybył do węzła nr " + wezel.getNumer());
         Krawedz wybrana = wybierzDroge();
-        wybrana.przetworzStart(kolejka, this.getCzas());
+        wybrana.przetworzStart(sportowiec, this.getCzas(), kolejka);
     }
 }

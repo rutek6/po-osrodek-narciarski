@@ -77,6 +77,8 @@ public class Osrodek {
         wyciagi[indeksWyciagow] = x;
         indeksWyciagow++;
         x.getPoczatek().dodajWyciag(x);
+        StartWyciagu noweZdarzenie = new StartWyciagu(x, new Czas(9, 0, 0));
+        kolejka.dodaj(noweZdarzenie);
     }
 
     public void dodajSportowiec(Sportowiec x) {
@@ -84,13 +86,15 @@ public class Osrodek {
             return;
         sportowcy[indeksSportowcow] = x;
         indeksSportowcow++;
+        PrzybycieDoWezla noweZdarzenie = new PrzybycieDoWezla(x, x.getCzas(), x.getStart());
+        kolejka.dodaj(noweZdarzenie);
     }
 
     public void przeprowadzSymulacje() {
         Zdarzenie x = kolejka.wez();
         while (x != null) {
             x.przetworz(kolejka);
-            kolejka.wez();
+            x = kolejka.wez();
         }
     }
 }

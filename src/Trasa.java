@@ -10,19 +10,6 @@ public class Trasa extends Krawedz {
         odpornosc = o;
     }
 
-    @Override
-    public Czas getCzasDotarcia(Czas obecnyCzas) {
-        Czas wynik;
-        wynik = obecnyCzas.dodaj(this.getCzas());
-        return wynik;
-    }
-
-    @Override
-    public void przetworzStart(KolejkaZdarzen kolejka, Czas obecnyCzas, Sportowiec sportowiec) {
-        Czas czasDotarcia = obecnyCzas.dodaj(this.getCzas());
-        PrzybycieDoWezla noweZdarzenie = new PrzybycieDoWezla(sportowiec, czasDotarcia, this.getKoniec());
-    }
-
     public String toString() {
         return "-----TRASA----- \n"
                 + "Numer: "
@@ -40,6 +27,12 @@ public class Trasa extends Krawedz {
                 + "\nCzas przejazdu: "
                 + this.getCzas()
                 + "\n";
+    }
+
+    @Override
+    public void przetworzStart(Sportowiec sportowiec, Czas obecnyCzas, KolejkaZdarzen kolejka) {
+        StartTrasy noweZdarzenie = new StartTrasy(sportowiec, obecnyCzas, this);
+        kolejka.dodaj(noweZdarzenie);
     }
 
 }

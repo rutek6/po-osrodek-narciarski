@@ -14,35 +14,46 @@ public class KolejkaWyciagu {
             return nast;
         }
 
+        public Wezel getPop() {
+            return pop;
+        }
+
+        public void setNast(Wezel x) {
+            nast = x;
+        }
+
+        public void setPop(Wezel x) {
+            pop = x;
+        }
+
         public Sportowiec getWartosc() {
             return wartosc;
         }
-
-        Wezel(Wezel poprzedni, Sportowiec x) {
-            this.wartosc = x;
-            this.pop = poprzedni;
-            this.nast = null;
-        }
-
     }
 
+    private Wyciag wyciag;
     private Wezel start;
     private Wezel koniec;
 
-    public KolejkaWyciagu() {
+    public KolejkaWyciagu(Wyciag w) {
+        wyciag = w;
         start = null;
         koniec = null;
     }
 
-    public void dodaj(Sportowiec x) {
-        Wezel nowyWezel = new Wezel(koniec, x);
-        koniec = nowyWezel;
+    public Sportowiec wez() {
+        if (start == null)
+            return null;
+        Sportowiec x = start.getWartosc();
+        start = start.getNast();
+        return x;
     }
 
-    public Sportowiec wez() {
-        Sportowiec wynik = start.getWartosc();
-        start = start.getNast();
-        return wynik;
+    public void dodaj(Sportowiec x) {
+        Wezel nowy = new Wezel(x);
+        nowy.setPop(koniec);
+        koniec.setNast(nowy);
+        koniec = nowy;
     }
 
 }
