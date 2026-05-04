@@ -40,8 +40,10 @@ public class KolejkaZdarzen {
             this.wartosc = x;
             this.pop = poprzedni;
             this.nast = nastepny;
-            this.pop.setNast(this);
-            this.nast.setPop(this);
+            if (poprzedni != null)
+                this.pop.setNast(this);
+            if (nastepny != null)
+                this.nast.setPop(this);
         }
 
     }
@@ -58,9 +60,10 @@ public class KolejkaZdarzen {
         if (start == null) {
             start = new Wezel(x);
             koniec = start;
+            return;
         }
         Wezel poprzedni = koniec;
-        while (x.getCzas().compareTo(poprzedni.getWartosc().getCzas()) <= 0 && poprzedni != null) {
+        while (poprzedni != null && x.getCzas().compareTo(poprzedni.getWartosc().getCzas()) < 0) {
             poprzedni = poprzedni.getPop();
         }
         Wezel nowyWezel = new Wezel(poprzedni, x, poprzedni.getNast());

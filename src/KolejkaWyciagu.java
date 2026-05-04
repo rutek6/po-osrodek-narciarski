@@ -46,11 +46,21 @@ public class KolejkaWyciagu {
             return null;
         Sportowiec x = start.getWartosc();
         start = start.getNast();
+        if (start != null) {
+            start.setPop(null);
+        } else {
+            koniec = null;
+        }
         return x;
     }
 
     public void dodaj(Sportowiec x) {
         Wezel nowy = new Wezel(x);
+        if (start == null) {
+            start = nowy;
+            koniec = nowy;
+            return;
+        }
         nowy.setPop(koniec);
         koniec.setNast(nowy);
         koniec = nowy;

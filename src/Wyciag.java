@@ -42,6 +42,16 @@ public class Wyciag extends Krawedz {
     @Override
     public void przetworzStart(Sportowiec s, Czas c, KolejkaZdarzen k) {
         oczekujacy.dodaj(s);
+        if (s.getCzySlezdony()) {
+            System.out.println(
+                    "["
+                            + c
+                            + "]"
+                            + " Sportowiec "
+                            + s.getNumer()
+                            + " staje w kolejce do wyciągu nr "
+                            + this.getNumer());
+        }
     }
 
 }

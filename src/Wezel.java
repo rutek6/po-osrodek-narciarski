@@ -47,6 +47,14 @@ public class Wezel {
         indeksWyciagow += 1;
     }
 
+    public int getIndeksTras() {
+        return indeksTras;
+    }
+
+    public int getIndeksWyciagow() {
+        return indeksWyciagow;
+    }
+
     public Trasa[] getTrasy() {
         return trasy.clone();
     }

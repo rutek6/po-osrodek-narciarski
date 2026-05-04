@@ -9,5 +9,9 @@ public abstract class Zdarzenie {
         czas = x;
     }
 
+    public String toString() {
+        return "\nZdarzenie, Czas: " + czas;
+    }
+
     public abstract void przetworz(KolejkaZdarzen kolejka);
 }

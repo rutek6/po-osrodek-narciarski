@@ -84,6 +84,7 @@ public class Czas {
     }
 
     public String toString() {
-        return godziny + ":" + minuty + ":" + sekundy;
+        return String.format("%02d", godziny) + ":" + String.format("%02d", minuty) + ":"
+                + String.format("%02d", sekundy);
     }
 }

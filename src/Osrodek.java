@@ -68,6 +68,8 @@ public class Osrodek {
         trasy[indeksTras] = x;
         indeksTras++;
         x.getPoczatek().dodajTrase(x);
+        Trasa y = x.getPoczatek().getTrasy()[0];
+        System.out.println(y);
 
     }
 
@@ -77,6 +79,8 @@ public class Osrodek {
         wyciagi[indeksWyciagow] = x;
         indeksWyciagow++;
         x.getPoczatek().dodajWyciag(x);
+        Wyciag y = x.getPoczatek().getWyciagi()[0];
+        System.out.println(y);
         StartWyciagu noweZdarzenie = new StartWyciagu(x, new Czas(9, 0, 0));
         kolejka.dodaj(noweZdarzenie);
     }
@@ -92,8 +96,10 @@ public class Osrodek {
 
     public void przeprowadzSymulacje() {
         Zdarzenie x = kolejka.wez();
-        while (x != null) {
+        while (x != null && x.getCzas().compareTo(new Czas(16, 0, 0)) <= 0) {
+            // while (x != null) {
             x.przetworz(kolejka);
+            // System.out.println(x);
             x = kolejka.wez();
         }
     }

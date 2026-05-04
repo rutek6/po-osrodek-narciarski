@@ -1,10 +1,9 @@
 public class StartWyciagu extends Zdarzenie {
     private Wyciag wyciag;
-    private Czas obecnyCzas;
 
     public StartWyciagu(Wyciag w, Czas c) {
         wyciag = w;
-        obecnyCzas = c;
+        this.setCzas(c);
     }
 
     @Override
@@ -14,12 +13,24 @@ public class StartWyciagu extends Zdarzenie {
         int i = 1;
         Sportowiec sportowiec = wyciag.getKolejka().wez();
         while (sportowiec != null && i <= maxPasazerow) {
-            Czas czasDotarcia = wyciag.getCzas().dodaj(obecnyCzas);
+            Czas czasDotarcia = wyciag.getCzas().dodaj(this.getCzas());
             PrzybycieDoWezla noweZdarzenie = new PrzybycieDoWezla(sportowiec, czasDotarcia, wyciag.getKoniec());
             kolejka.dodaj(noweZdarzenie);
+            if (sportowiec.getCzySlezdony()) {
+                System.out.println(
+                        "["
+                                + this.getCzas()
+                                + "]"
+                                + " Sportowiec "
+                                + sportowiec.getNumer()
+                                + " rusza wyciągiem nr "
+                                + wyciag.getNumer());
+            }
+            i += 1;
             sportowiec = wyciag.getKolejka().wez();
         }
-        StartWyciagu kolejnyStart = new StartWyciagu(wyciag, obecnyCzas.dodaj(odstep));
+        System.out.println("[" + this.getCzas() + "]" + " Rusza wyciąg nr " + wyciag.getNumer());
+        StartWyciagu kolejnyStart = new StartWyciagu(wyciag, this.getCzas().dodaj(odstep));
         kolejka.dodaj(kolejnyStart);
     }
 }
