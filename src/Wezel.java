@@ -55,6 +55,16 @@ public class Wezel {
         return indeksWyciagow;
     }
 
+    public int getLiczbaOsiagalnychTras() {
+        int w = 0;
+        w += indeksTras;
+        for (int i = 0; i < indeksWyciagow; i++) {
+            w += wyciagi[i].getKoniec().getIndeksTras();
+        }
+        return w;
+
+    }
+
     public Trasa[] getTrasy() {
         return trasy.clone();
     }

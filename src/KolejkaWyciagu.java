@@ -54,6 +54,16 @@ public class KolejkaWyciagu {
         return x;
     }
 
+    public void wypiszWszystkie() {
+        Wezel x = start;
+        int i = 0;
+        while (x != null) {
+            System.out.println("Nr w kolejce: " + i + ", Nr sportowca: " + x.getWartosc().getNumer());
+            x = x.getNast();
+            i += 1;
+        }
+    }
+
     public void dodaj(Sportowiec x) {
         Wezel nowy = new Wezel(x);
         if (start == null) {
@@ -64,6 +74,7 @@ public class KolejkaWyciagu {
         nowy.setPop(koniec);
         koniec.setNast(nowy);
         koniec = nowy;
+
     }
 
 }

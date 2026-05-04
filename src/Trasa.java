@@ -29,6 +29,26 @@ public class Trasa extends Krawedz {
                 + "\n";
     }
 
+    public double getAtrakcyjnosc(Sportowiec sportowiec) {
+        double d;
+        double pt = trudnosc;
+        double pn = sportowiec.getPoziom();
+        if (pt >= pn + 5) {
+            d = 0;
+        } else if (pn + 5 > pt && pt >= pn) {
+            d = 1 - (pt - pn) / 5;
+        } else {
+            d = Math.max(0.2, 1 - (pn - pt) / 7);
+        }
+
+        double w = bazowaAtrakcyjnosc + (1 - bazowaAtrakcyjnosc) * Math.pow(odpornosc, this.getLiczbaPrzejazdow());
+
+        double prefW = sportowiec.getPrefNawierzchnia();
+        double prefD = sportowiec.getPrefTrudnosc();
+
+        return prefD * d + prefW * w;
+    }
+
     @Override
     public void przetworzStart(Sportowiec sportowiec, Czas obecnyCzas, KolejkaZdarzen kolejka) {
         StartTrasy noweZdarzenie = new StartTrasy(sportowiec, obecnyCzas, this);

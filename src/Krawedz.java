@@ -13,8 +13,16 @@ public abstract class Krawedz {
         numer = nr;
     }
 
+    public void zwiekszLicznikPrzejazdow() {
+        liczbaPrzejazdow += 1;
+    }
+
     public int getNumer() {
         return numer;
+    }
+
+    public int getLiczbaPrzejazdow() {
+        return liczbaPrzejazdow;
     }
 
     public Wezel getPoczatek() {

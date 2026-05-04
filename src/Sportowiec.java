@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Sportowiec {
     private int nr;
     private int poziom; // 0 - 10
@@ -8,6 +10,8 @@ public class Sportowiec {
     private double prefTrudnosc;
     private double prefNawierzchnia;
     private Wezel pozycja;
+    private Trasa wybranaNastepnaTrasa;
+    private final Random random = new Random();
 
     public Sportowiec(int nr,
             int poziom,
@@ -26,6 +30,10 @@ public class Sportowiec {
         this.prefTrudnosc = prefTrudnosc;
         this.prefNawierzchnia = prefNawierzchnia;
         this.czySledzony = s;
+    }
+
+    public boolean czyLosowac() {
+        return random.nextFloat() < spontanicznosc;
     }
 
     public int getNumer() {

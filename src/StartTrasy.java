@@ -21,6 +21,7 @@ public class StartTrasy extends Zdarzenie {
                             + " rusza trasą nr "
                             + trasa.getNumer());
         }
+        trasa.zwiekszLicznikPrzejazdow();
 
         PrzybycieDoWezla noweZdarzenie = new PrzybycieDoWezla(sportowiec, czasDotarcia, trasa.getKoniec());
         kolejka.dodaj(noweZdarzenie);

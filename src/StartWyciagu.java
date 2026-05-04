@@ -10,12 +10,22 @@ public class StartWyciagu extends Zdarzenie {
     public void przetworz(KolejkaZdarzen kolejka) {
         int maxPasazerow = wyciag.getMax();
         Czas odstep = wyciag.getOdstep();
-        int i = 1;
-        Sportowiec sportowiec = wyciag.getKolejka().wez();
-        while (sportowiec != null && i <= maxPasazerow) {
+        // System.out.println("KOLEJKA PRZED PETLA: ");
+        // wyciag.getKolejka().wypiszWszystkie();
+
+        for (int i = 0; i < maxPasazerow; i++) {
+            Sportowiec sportowiec = wyciag.getKolejka().wez();
+
+            if (sportowiec == null) {
+                // System.out.println("BREAK");
+                break;
+            }
+            // System.out.println("SPORTOWIEC W PĘTLI: " + sportowiec.getNumer());
+            // System.out.println("i = " + i);
             Czas czasDotarcia = wyciag.getCzas().dodaj(this.getCzas());
             PrzybycieDoWezla noweZdarzenie = new PrzybycieDoWezla(sportowiec, czasDotarcia, wyciag.getKoniec());
             kolejka.dodaj(noweZdarzenie);
+            wyciag.zwiekszLicznikPrzejazdow();
             if (sportowiec.getCzySlezdony()) {
                 System.out.println(
                         "["
@@ -26,8 +36,6 @@ public class StartWyciagu extends Zdarzenie {
                                 + " rusza wyciągiem nr "
                                 + wyciag.getNumer());
             }
-            i += 1;
-            sportowiec = wyciag.getKolejka().wez();
         }
         // System.out.println("[" + this.getCzas() + "]" + " Rusza wyciąg nr " +
         // wyciag.getNumer());

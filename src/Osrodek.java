@@ -96,11 +96,18 @@ public class Osrodek {
 
     public void przeprowadzSymulacje() {
         Zdarzenie x = kolejka.wez();
-        while (x != null && x.getCzas().compareTo(new Czas(10, 0, 0)) <= 0) {
+        while (x != null && x.getCzas().compareTo(new Czas(14, 59, 59)) <= 0) {
             // while (x != null) {
             x.przetworz(kolejka);
             // System.out.println(x);
             x = kolejka.wez();
+        }
+        for (int i = 0; i < indeksTras; i++) {
+            System.out.println("Trasa nr: " + i + ", l. przejazdów: " + trasy[i].getLiczbaPrzejazdow());
+        }
+
+        for (int i = 0; i < indeksWyciagow; i++) {
+            System.out.println("Wyciag nr: " + i + ", l. przejazdów: " + wyciagi[i].getLiczbaPrzejazdow());
         }
     }
 }

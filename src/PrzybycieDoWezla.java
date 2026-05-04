@@ -11,7 +11,7 @@ public class PrzybycieDoWezla extends Zdarzenie {
         wezel = w;
     }
 
-    private Krawedz wybierzDroge() {
+    private Krawedz wybierzDrogeLosowo() {
         Random generator = new Random();
         Trasa[] trasy = wezel.getTrasy();
         Wyciag[] wyciagi = wezel.getWyciagi();
@@ -43,6 +43,43 @@ public class PrzybycieDoWezla extends Zdarzenie {
         return null;
     }
 
+    private Krawedz wybierzDroge() {
+        Trasa[] trasy = wezel.getTrasy();
+        Wyciag[] wyciagi = wezel.getWyciagi();
+
+        Trasa wybrana = null;
+        Wyciag posredni = null;
+        double amax = 0;
+        for (int i = 0; i < trasy.length; i++) {
+            if (trasy[i] == null)
+                break;
+            double a = trasy[i].getAtrakcyjnosc(sportowiec);
+            if (a > amax) {
+                wybrana = trasy[i];
+                amax = a;
+            }
+        }
+        for (int j = 0; j < wyciagi.length; j++) {
+            if (wyciagi[j] == null)
+                break;
+            Trasa[] trasyNaGorze = wyciagi[j].getKoniec().getTrasy();
+            for (int i = 0; i < trasyNaGorze.length; i++) {
+                if (trasyNaGorze[i] == null)
+                    break;
+                double a = trasyNaGorze[i].getAtrakcyjnosc(sportowiec);
+                if (a > amax) {
+                    wybrana = trasyNaGorze[i];
+                    posredni = wyciagi[j];
+                    amax = a;
+                }
+            }
+        }
+        if (posredni != null) {
+            return posredni;
+        }
+        return wybrana;
+    }
+
     @Override
     public void przetworz(KolejkaZdarzen kolejka) {
         if (sportowiec.getCzySlezdony()) {
@@ -50,7 +87,15 @@ public class PrzybycieDoWezla extends Zdarzenie {
                     "[" + this.getCzas() + "]" + " Sportowiec " + sportowiec.getNumer() + " przybył do węzła nr "
                             + wezel.getNumer());
         }
-        Krawedz wybrana = wybierzDroge();
+
+        Krawedz wybrana;
+        if (sportowiec.czyLosowac()) {
+            wybrana = wybierzDrogeLosowo();
+            if (sportowiec.getCzySlezdony())
+                System.out.println("LOSOWANO");
+        } else
+            wybrana = wybierzDroge();
         wybrana.przetworzStart(sportowiec, this.getCzas(), kolejka);
+
     }
 }
