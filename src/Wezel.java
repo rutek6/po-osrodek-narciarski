@@ -38,12 +38,12 @@ public class Wezel {
 
     public void dodajWyciag(Wyciag x) {
         if (indeksWyciagow == wyciagi.length) {
-            Wyciag[] nowa = new Wyciag[trasy.length * 2];
+            Wyciag[] nowa = new Wyciag[wyciagi.length * 2];
             for (int i = 0; i < wyciagi.length; i++)
                 nowa[i] = wyciagi[i];
             wyciagi = nowa;
         }
-        wyciagi[indeksTras] = x;
+        wyciagi[indeksWyciagow] = x;
         indeksWyciagow += 1;
     }
 

@@ -29,7 +29,8 @@ public class StartWyciagu extends Zdarzenie {
             i += 1;
             sportowiec = wyciag.getKolejka().wez();
         }
-        System.out.println("[" + this.getCzas() + "]" + " Rusza wyciąg nr " + wyciag.getNumer());
+        // System.out.println("[" + this.getCzas() + "]" + " Rusza wyciąg nr " +
+        // wyciag.getNumer());
         StartWyciagu kolejnyStart = new StartWyciagu(wyciag, this.getCzas().dodaj(odstep));
         kolejka.dodaj(kolejnyStart);
     }

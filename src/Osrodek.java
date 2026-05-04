@@ -96,7 +96,7 @@ public class Osrodek {
 
     public void przeprowadzSymulacje() {
         Zdarzenie x = kolejka.wez();
-        while (x != null && x.getCzas().compareTo(new Czas(16, 0, 0)) <= 0) {
+        while (x != null && x.getCzas().compareTo(new Czas(10, 0, 0)) <= 0) {
             // while (x != null) {
             x.przetworz(kolejka);
             // System.out.println(x);

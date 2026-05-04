@@ -30,12 +30,6 @@ public class KolejkaZdarzen {
             return wartosc;
         }
 
-        Wezel(Wezel poprzedni, Zdarzenie x) {
-            this.wartosc = x;
-            this.pop = poprzedni;
-            this.nast = null;
-        }
-
         Wezel(Wezel poprzedni, Zdarzenie x, Wezel nastepny) {
             this.wartosc = x;
             this.pop = poprzedni;
@@ -66,10 +60,14 @@ public class KolejkaZdarzen {
         while (poprzedni != null && x.getCzas().compareTo(poprzedni.getWartosc().getCzas()) < 0) {
             poprzedni = poprzedni.getPop();
         }
-        Wezel nowyWezel = new Wezel(poprzedni, x, poprzedni.getNast());
-        if (nowyWezel.getNast() == null)
-            koniec = nowyWezel;
-        return;
+        if (poprzedni == null) {
+            Wezel nowyWezel = new Wezel(null, x, start);
+            start = nowyWezel;
+        } else {
+            Wezel nowyWezel = new Wezel(poprzedni, x, poprzedni.getNast());
+            if (nowyWezel.getNast() == null)
+                koniec = nowyWezel;
+        }
     }
 
     public Zdarzenie wez() {
@@ -77,6 +75,11 @@ public class KolejkaZdarzen {
             return null;
         Zdarzenie wynik = start.getWartosc();
         start = start.getNast();
+        if (start != null) {
+            start.setPop(null);
+        } else {
+            koniec = null;
+        }
         return wynik;
     }
 }
