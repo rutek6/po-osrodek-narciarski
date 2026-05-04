@@ -9,8 +9,6 @@ public class Sportowiec {
     private double spontanicznosc;
     private double prefTrudnosc;
     private double prefNawierzchnia;
-    private Wezel pozycja;
-    private Trasa wybranaNastepnaTrasa;
     private final Random random = new Random();
 
     public Sportowiec(int nr,
@@ -24,7 +22,6 @@ public class Sportowiec {
         this.nr = nr;
         this.poziom = poziom;
         this.start = start;
-        this.pozycja = start;
         this.czasStartu = czasStartu;
         this.spontanicznosc = spontanicznosc;
         this.prefTrudnosc = prefTrudnosc;
