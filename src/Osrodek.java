@@ -11,8 +11,6 @@ public class Osrodek {
     private int liczbaTras = 0;
     private int liczbaWyciagow = 0;
     private int liczbaSportowcow = 0;
-
-    private Czas obecnyCzas = new Czas(9, 0, 0);
     private KolejkaZdarzen kolejka = new KolejkaZdarzen();
 
     public Wezel getWezel(int numer) {

@@ -91,8 +91,6 @@ public class PrzybycieDoWezla extends Zdarzenie {
         Krawedz wybrana;
         if (sportowiec.czyLosowac()) {
             wybrana = wybierzDrogeLosowo();
-            if (sportowiec.getCzySlezdony())
-                System.out.println("LOSOWANO");
         } else
             wybrana = wybierzDroge();
         wybrana.przetworzStart(sportowiec, this.getCzas(), kolejka);
