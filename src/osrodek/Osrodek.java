@@ -19,6 +19,7 @@ public class Osrodek {
     private int liczbaWyciagow = 0;
     private int liczbaSportowcow = 0;
     private KolejkaZdarzen kolejka = new KolejkaZdarzen();
+    private static final Czas CZAS_ZAMKNIECIA = new Czas(16, 0, 0);
 
     public Wezel getWezel(int numer) {
         return wezly[numer];
@@ -97,17 +98,17 @@ public class Osrodek {
     public void przeprowadzSymulacje() {
         while (!kolejka.czyPusta()) {
             Zdarzenie x = kolejka.wez();
-            if (x.getCzas().compareTo(new Czas(16, 0, 0)) >= 0) {
+            if (x.getCzas().compareTo(CZAS_ZAMKNIECIA) >= 0) {
                 break;
             }
             x.przetworz(kolejka);
         }
         for (int i = 0; i < indeksTras; i++) {
-            System.out.println("Trasa nr: " + i + ", l. przejazdów: " + trasy[i].getLiczbaPrzejazdow());
+            System.out.println("Trasa nr: " + i + ", liczba przejazdów: " + trasy[i].getLiczbaPrzejazdow());
         }
 
         for (int i = 0; i < indeksWyciagow; i++) {
-            System.out.println("Wyciag nr: " + i + ", l. przejazdów: " + wyciagi[i].getLiczbaPrzejazdow());
+            System.out.println("Wyciag nr: " + i + ", liczba przejazdów: " + wyciagi[i].getLiczbaPrzejazdow());
         }
     }
 }

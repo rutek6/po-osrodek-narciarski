@@ -12,6 +12,7 @@ public class PrzybycieDoWezla extends Zdarzenie {
 
     protected Sportowiec sportowiec;
     protected Wezel wezel;
+    private static final Czas CZAS_KONCA_WJAZDOW = new Czas(15, 0, 0);
 
     public PrzybycieDoWezla(Sportowiec s, Czas c, Wezel w) {
         sportowiec = s;
@@ -90,7 +91,7 @@ public class PrzybycieDoWezla extends Zdarzenie {
             wybrana = wybierzDrogeLosowo();
         } else
             wybrana = wybierzDroge();
-        if (this.getCzas().compareTo(new Czas(15, 0, 0)) < 0)
+        if (this.getCzas().compareTo(CZAS_KONCA_WJAZDOW) < 0)
             wybrana.przetworzStart(sportowiec, this.getCzas(), kolejka);
 
     }
