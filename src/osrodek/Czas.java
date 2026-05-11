@@ -1,3 +1,5 @@
+package osrodek;
+
 public class Czas {
     private int godziny;
     private int minuty;

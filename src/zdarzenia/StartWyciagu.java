@@ -1,3 +1,10 @@
+package zdarzenia;
+
+import infrastruktura.Wyciag;
+import osoby.Sportowiec;
+import osrodek.Czas;
+import struktury.KolejkaZdarzen;
+
 public class StartWyciagu extends Zdarzenie {
     private Wyciag wyciag;
 
@@ -10,36 +17,31 @@ public class StartWyciagu extends Zdarzenie {
     public void przetworz(KolejkaZdarzen kolejka) {
         int maxPasazerow = wyciag.getMax();
         Czas odstep = wyciag.getOdstep();
-        // System.out.println("KOLEJKA PRZED PETLA: ");
-        // wyciag.getKolejka().wypiszWszystkie();
 
         for (int i = 0; i < maxPasazerow; i++) {
             Sportowiec sportowiec = wyciag.getKolejka().wez();
 
             if (sportowiec == null) {
-                // System.out.println("BREAK");
                 break;
             }
-            // System.out.println("SPORTOWIEC W PĘTLI: " + sportowiec.getNumer());
-            // System.out.println("i = " + i);
+
             Czas czasDotarcia = wyciag.getCzas().dodaj(this.getCzas());
             ZejscieZWyciagu noweZdarzenie = new ZejscieZWyciagu(sportowiec, czasDotarcia, wyciag.getKoniec());
             kolejka.dodaj(noweZdarzenie);
             wyciag.zwiekszLicznikPrzejazdow();
             if (sportowiec.getCzySlezdony()) {
                 System.out.println(
-                        "["
-                                + this.getCzas()
-                                + "]"
+                        this.getCzas()
+                                + ":"
                                 + " Sportowiec "
                                 + sportowiec.getNumer()
                                 + " rusza wyciągiem nr "
                                 + wyciag.getNumer());
             }
         }
-        // System.out.println("[" + this.getCzas() + "]" + " Rusza wyciąg nr " +
-        // wyciag.getNumer());
-        StartWyciagu kolejnyStart = new StartWyciagu(wyciag, this.getCzas().dodaj(odstep));
-        kolejka.dodaj(kolejnyStart);
+        if (this.getCzas().compareTo(new Czas(16, 0, 0)) < 0) {
+            StartWyciagu kolejnyStart = new StartWyciagu(wyciag, this.getCzas().dodaj(odstep));
+            kolejka.dodaj(kolejnyStart);
+        }
     }
 }

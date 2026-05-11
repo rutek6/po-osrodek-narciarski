@@ -1,3 +1,7 @@
+package struktury;
+
+import zdarzenia.Zdarzenie;
+
 public class KolejkaZdarzen implements Kolejka {
     private class Wezel {
         private Zdarzenie wartosc;
@@ -71,8 +75,7 @@ public class KolejkaZdarzen implements Kolejka {
     }
 
     public Zdarzenie wez() {
-        if (start == null)
-            return null;
+        assert start != null : "Próba pobrania elementu z pustej kolejki";
         Zdarzenie wynik = start.getWartosc();
         start = start.getNast();
         if (start != null) {

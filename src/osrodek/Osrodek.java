@@ -1,3 +1,10 @@
+package osrodek;
+
+import infrastruktura.*;
+import osoby.Sportowiec;
+import struktury.KolejkaZdarzen;
+import zdarzenia.*;
+
 public class Osrodek {
     private Wezel[] wezly;
     private int indeksWezlow = 0;
@@ -94,10 +101,8 @@ public class Osrodek {
 
     public void przeprowadzSymulacje() {
         Zdarzenie x = kolejka.wez();
-        while (x != null && x.getCzas().compareTo(new Czas(14, 59, 59)) <= 0) {
-            // while (x != null) {
+        while (x != null && x.getCzas().compareTo(new Czas(15, 59, 59)) <= 0) {
             x.przetworz(kolejka);
-            // System.out.println(x);
             x = kolejka.wez();
         }
         for (int i = 0; i < indeksTras; i++) {

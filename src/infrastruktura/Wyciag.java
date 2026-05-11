@@ -1,3 +1,10 @@
+package infrastruktura;
+
+import osoby.Sportowiec;
+import osrodek.Czas;
+import struktury.KolejkaWyciagu;
+import struktury.KolejkaZdarzen;
+
 public class Wyciag extends Krawedz {
     private Czas odstep;
     private int maxPasazerow;
@@ -7,7 +14,7 @@ public class Wyciag extends Krawedz {
         super(p, k, c, nr);
         odstep = od;
         maxPasazerow = max;
-        oczekujacy = new KolejkaWyciagu(this);
+        oczekujacy = new KolejkaWyciagu();
     }
 
     public int getMax() {
@@ -44,9 +51,8 @@ public class Wyciag extends Krawedz {
         oczekujacy.dodaj(s);
         if (s.getCzySlezdony()) {
             System.out.println(
-                    "["
-                            + c
-                            + "]"
+                    c
+                            + ":"
                             + " Sportowiec "
                             + s.getNumer()
                             + " staje w kolejce do wyciągu nr "

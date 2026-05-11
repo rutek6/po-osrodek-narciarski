@@ -1,4 +1,14 @@
+package zdarzenia;
+
 import java.util.Random;
+
+import infrastruktura.Krawedz;
+import infrastruktura.Trasa;
+import infrastruktura.Wezel;
+import infrastruktura.Wyciag;
+import osoby.Sportowiec;
+import osrodek.Czas;
+import struktury.KolejkaZdarzen;
 
 public class PrzybycieDoWezla extends Zdarzenie {
 
@@ -11,36 +21,25 @@ public class PrzybycieDoWezla extends Zdarzenie {
         wezel = w;
     }
 
-    protected Krawedz wybierzDrogeLosowo() {
-        Random generator = new Random();
+    protected Krawedz wybierzDrogeLosowo(Random generator) {
         Trasa[] trasy = wezel.getTrasy();
         Wyciag[] wyciagi = wezel.getWyciagi();
 
         int ileTras = wezel.getIndeksTras();
         int ileWyciagow = wezel.getIndeksWyciagow();
 
-        boolean maTrasy = ileTras > 0;
-        boolean maWyciagi = ileWyciagow > 0;
-
-        // 1. Jeśli są i trasy, i wyciągi - losujemy pół na pół
-        if (maTrasy && maWyciagi) {
-            if (generator.nextInt(150) % 2 == 0) {
-                return trasy[generator.nextInt(ileTras)];
-            } else {
-                return wyciagi[generator.nextInt(ileWyciagow)];
-            }
-        }
-        // 2. Jeśli są tylko trasy (np. szczyt góry) - jedziemy trasą
-        else if (maTrasy) {
-            return trasy[generator.nextInt(ileTras)];
-        }
-        // 3. Jeśli są tylko wyciągi (np. sam dół góry) - jedziemy wyciągiem
-        else if (maWyciagi) {
-            return wyciagi[generator.nextInt(ileWyciagow)];
+        int sumaKrawedzi = ileTras + ileWyciagow;
+        if (sumaKrawedzi == 0) {
+            return null;
         }
 
-        // 4. Martwy punkt (nie powinno wystąpić w poprawnym grafie ośrodka)
-        return null;
+        int wylosowanyIndeks = generator.nextInt(sumaKrawedzi);
+
+        if (wylosowanyIndeks < ileTras) {
+            return trasy[wylosowanyIndeks];
+        } else {
+            return wyciagi[wylosowanyIndeks - ileTras];
+        }
     }
 
     protected Krawedz wybierzDroge() {
@@ -84,16 +83,17 @@ public class PrzybycieDoWezla extends Zdarzenie {
     public void przetworz(KolejkaZdarzen kolejka) {
         if (sportowiec.getCzySlezdony()) {
             System.out.println(
-                    "[" + this.getCzas() + "]" + " Sportowiec " + sportowiec.getNumer() + " przybył do węzła nr "
+                    this.getCzas() + ":" + " Sportowiec " + sportowiec.getNumer() + " przybył do węzła nr "
                             + wezel.getNumer());
         }
 
         Krawedz wybrana;
         if (sportowiec.czyLosowac()) {
-            wybrana = wybierzDrogeLosowo();
+            wybrana = wybierzDrogeLosowo(sportowiec.getGenerator());
         } else
             wybrana = wybierzDroge();
-        wybrana.przetworzStart(sportowiec, this.getCzas(), kolejka);
+        if (this.getCzas().compareTo(new Czas(15, 0, 0)) < 0)
+            wybrana.przetworzStart(sportowiec, this.getCzas(), kolejka);
 
     }
 }

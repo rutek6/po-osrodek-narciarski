@@ -1,3 +1,10 @@
+package zdarzenia;
+
+import infrastruktura.Trasa;
+import osoby.Sportowiec;
+import osrodek.Czas;
+import struktury.KolejkaZdarzen;
+
 public class StartTrasy extends Zdarzenie {
     private Sportowiec sportowiec;
     private Trasa trasa;
@@ -13,9 +20,8 @@ public class StartTrasy extends Zdarzenie {
         Czas czasDotarcia = this.getCzas().dodaj(trasa.getCzas());
         if (sportowiec.getCzySlezdony()) {
             System.out.println(
-                    "["
-                            + this.getCzas()
-                            + "]"
+                    this.getCzas()
+                            + ":"
                             + " Sportowiec "
                             + sportowiec.getNumer()
                             + " rusza trasą nr "

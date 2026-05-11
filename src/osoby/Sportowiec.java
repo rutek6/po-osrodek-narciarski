@@ -1,4 +1,9 @@
+package osoby;
+
 import java.util.Random;
+
+import infrastruktura.Wezel;
+import osrodek.Czas;
 
 public class Sportowiec {
     private int nr;
@@ -9,7 +14,7 @@ public class Sportowiec {
     private double spontanicznosc;
     private double prefTrudnosc;
     private double prefNawierzchnia;
-    private final Random random = new Random();
+    private final Random generator = new Random();
 
     public Sportowiec(int nr,
             int poziom,
@@ -30,7 +35,7 @@ public class Sportowiec {
     }
 
     public boolean czyLosowac() {
-        return random.nextFloat() < spontanicznosc;
+        return generator.nextFloat() < spontanicznosc;
     }
 
     public int getNumer() {
@@ -63,6 +68,10 @@ public class Sportowiec {
 
     public boolean getCzySlezdony() {
         return czySledzony;
+    }
+
+    public Random getGenerator() {
+        return generator;
     }
 
     public String toString() {

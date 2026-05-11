@@ -1,3 +1,9 @@
+package infrastruktura;
+
+import osoby.Sportowiec;
+import osrodek.Czas;
+import struktury.KolejkaZdarzen;
+
 public abstract class Krawedz {
     private Wezel poczatek;
     private Wezel koniec;

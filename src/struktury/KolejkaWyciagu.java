@@ -1,12 +1,14 @@
+package struktury;
+
+import osoby.Sportowiec;
+
 public class KolejkaWyciagu {
     private class Wezel {
         private Sportowiec wartosc;
-        private Wezel pop;
         private Wezel nast;
 
         public Wezel(Sportowiec x) {
             this.wartosc = x;
-            this.pop = null;
             this.nast = null;
         }
 
@@ -14,16 +16,8 @@ public class KolejkaWyciagu {
             return nast;
         }
 
-        public Wezel getPop() {
-            return pop;
-        }
-
         public void setNast(Wezel x) {
             nast = x;
-        }
-
-        public void setPop(Wezel x) {
-            pop = x;
         }
 
         public Sportowiec getWartosc() {
@@ -31,12 +25,10 @@ public class KolejkaWyciagu {
         }
     }
 
-    private Wyciag wyciag;
     private Wezel start;
     private Wezel koniec;
 
-    public KolejkaWyciagu(Wyciag w) {
-        wyciag = w;
+    public KolejkaWyciagu() {
         start = null;
         koniec = null;
     }
@@ -46,9 +38,7 @@ public class KolejkaWyciagu {
             return null;
         Sportowiec x = start.getWartosc();
         start = start.getNast();
-        if (start != null) {
-            start.setPop(null);
-        } else {
+        if (start == null) {
             koniec = null;
         }
         return x;
@@ -71,7 +61,6 @@ public class KolejkaWyciagu {
             koniec = nowy;
             return;
         }
-        nowy.setPop(koniec);
         koniec.setNast(nowy);
         koniec = nowy;
 

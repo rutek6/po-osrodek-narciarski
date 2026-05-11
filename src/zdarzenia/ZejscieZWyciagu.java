@@ -1,3 +1,11 @@
+package zdarzenia;
+
+import infrastruktura.Krawedz;
+import infrastruktura.Wezel;
+import osoby.Sportowiec;
+import osrodek.Czas;
+import struktury.KolejkaZdarzen;
+
 public class ZejscieZWyciagu extends PrzybycieDoWezla {
     public ZejscieZWyciagu(Sportowiec s, Czas c, Wezel w) {
         super(s, c, w);
@@ -7,17 +15,18 @@ public class ZejscieZWyciagu extends PrzybycieDoWezla {
     public void przetworz(KolejkaZdarzen kolejka) {
         if (sportowiec.getCzySlezdony()) {
             System.out.println(
-                    "[" + this.getCzas() + "]" + " Sportowiec " + sportowiec.getNumer()
+                    this.getCzas() + ":" + " Sportowiec " + sportowiec.getNumer()
                             + " zszedł z wyciągu i przybył do węzła "
                             + wezel.getNumer());
         }
 
         Krawedz wybrana;
         if (sportowiec.czyLosowac()) {
-            wybrana = wybierzDrogeLosowo();
+            wybrana = wybierzDrogeLosowo(sportowiec.getGenerator());
         } else
             wybrana = wybierzDroge();
-        wybrana.przetworzStart(sportowiec, this.getCzas(), kolejka);
+        if (this.getCzas().compareTo(new Czas(15, 0, 0)) < 0)
+            wybrana.przetworzStart(sportowiec, this.getCzas(), kolejka);
 
     }
 }

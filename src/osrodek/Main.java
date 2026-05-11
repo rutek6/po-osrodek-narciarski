@@ -1,4 +1,11 @@
+package osrodek;
+
 import java.util.Scanner;
+
+import osoby.Sportowiec;
+import infrastruktura.Wezel;
+import infrastruktura.Wyciag;
+import infrastruktura.Trasa;
 
 public class Main {
 
@@ -131,21 +138,6 @@ public class Main {
             }
         }
         sc.close();
-        // for (int i = 0; i < lWezlow; i++) {
-        // System.out.println(osrodek.getWezel(i));
-        // }
-        // for (int i = 0; i < lWyciagow; i++) {
-        // System.out.println(osrodek.getWyciag(i));
-        // }
-        // for (int i = 0; i < lTras; i++) {
-        // System.out.println(osrodek.getTrasa(i));
-        // }
-        // for (int i = 0; i < lTras; i++) {
-        // System.out.println(osrodek.getTrasa(i));
-        // }
-        // for (int i = 0; i < ileSportowcow; i++) {
-        // System.out.println(osrodek.getSportowiec(i));
-        // }
     }
 
     public static void main(String[] args) {

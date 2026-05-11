@@ -1,3 +1,8 @@
+package zdarzenia;
+
+import osrodek.Czas;
+import struktury.KolejkaZdarzen;
+
 public abstract class Zdarzenie {
     private Czas czas;
 

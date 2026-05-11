@@ -1,3 +1,10 @@
+package infrastruktura;
+
+import osoby.Sportowiec;
+import osrodek.Czas;
+import struktury.KolejkaZdarzen;
+import zdarzenia.StartTrasy;
+
 public class Trasa extends Krawedz {
     private int trudnosc;
     private double bazowaAtrakcyjnosc;

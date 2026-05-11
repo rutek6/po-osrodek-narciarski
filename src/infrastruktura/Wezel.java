@@ -1,3 +1,5 @@
+package infrastruktura;
+
 public class Wezel {
     private int nr;
     private int wysokosc;
