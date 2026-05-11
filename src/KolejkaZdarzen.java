@@ -1,4 +1,4 @@
-public class KolejkaZdarzen {
+public class KolejkaZdarzen implements Kolejka {
     private class Wezel {
         private Zdarzenie wartosc;
         private Wezel pop;
@@ -81,5 +81,12 @@ public class KolejkaZdarzen {
             koniec = null;
         }
         return wynik;
+    }
+
+    public boolean czyPusta() {
+        if (start == null) {
+            return true;
+        }
+        return false;
     }
 }

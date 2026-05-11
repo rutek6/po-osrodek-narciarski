@@ -2,8 +2,8 @@ import java.util.Random;
 
 public class PrzybycieDoWezla extends Zdarzenie {
 
-    private Sportowiec sportowiec;
-    private Wezel wezel;
+    protected Sportowiec sportowiec;
+    protected Wezel wezel;
 
     public PrzybycieDoWezla(Sportowiec s, Czas c, Wezel w) {
         sportowiec = s;
@@ -11,7 +11,7 @@ public class PrzybycieDoWezla extends Zdarzenie {
         wezel = w;
     }
 
-    private Krawedz wybierzDrogeLosowo() {
+    protected Krawedz wybierzDrogeLosowo() {
         Random generator = new Random();
         Trasa[] trasy = wezel.getTrasy();
         Wyciag[] wyciagi = wezel.getWyciagi();
@@ -43,7 +43,7 @@ public class PrzybycieDoWezla extends Zdarzenie {
         return null;
     }
 
-    private Krawedz wybierzDroge() {
+    protected Krawedz wybierzDroge() {
         Trasa[] trasy = wezel.getTrasy();
         Wyciag[] wyciagi = wezel.getWyciagi();
 

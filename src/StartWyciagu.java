@@ -23,7 +23,7 @@ public class StartWyciagu extends Zdarzenie {
             // System.out.println("SPORTOWIEC W PĘTLI: " + sportowiec.getNumer());
             // System.out.println("i = " + i);
             Czas czasDotarcia = wyciag.getCzas().dodaj(this.getCzas());
-            PrzybycieDoWezla noweZdarzenie = new PrzybycieDoWezla(sportowiec, czasDotarcia, wyciag.getKoniec());
+            ZejscieZWyciagu noweZdarzenie = new ZejscieZWyciagu(sportowiec, czasDotarcia, wyciag.getKoniec());
             kolejka.dodaj(noweZdarzenie);
             wyciag.zwiekszLicznikPrzejazdow();
             if (sportowiec.getCzySlezdony()) {
