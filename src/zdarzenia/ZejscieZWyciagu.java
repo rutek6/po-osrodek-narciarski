@@ -13,7 +13,7 @@ public class ZejscieZWyciagu extends PrzybycieDoWezla {
 
     @Override
     public void przetworz(KolejkaZdarzen kolejka) {
-        if (sportowiec.getCzySlezdony()) {
+        if (sportowiec.getCzySledzony()) {
             System.out.println(
                     this.getCzas() + ":" + " Sportowiec " + sportowiec.getNumer()
                             + " zszedł z wyciągu i przybył do węzła "
@@ -22,7 +22,7 @@ public class ZejscieZWyciagu extends PrzybycieDoWezla {
 
         Krawedz wybrana;
         if (sportowiec.czyLosowac()) {
-            wybrana = wybierzDrogeLosowo(sportowiec.getGenerator());
+            wybrana = wybierzDrogeLosowo();
         } else
             wybrana = wybierzDroge();
         if (this.getCzas().compareTo(new Czas(15, 0, 0)) < 0)

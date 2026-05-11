@@ -129,7 +129,7 @@ public class Main {
             double spontanicznosc = grupa.getSpontanicznosc();
             double prefTrudnosc = grupa.getPrefTrudnosc();
             double prefNawierzchnia = grupa.getPrefNawierzchnia();
-            boolean czySledzony = grupa.getCzySlezdony();
+            boolean czySledzony = grupa.getCzySledzony();
             for (int j = 0; j < lSportowcow; j++) {
                 Sportowiec nowySportowiec = new Sportowiec(indeksSportowcow, poziom, wezelStartowy,
                         new Czas(czasStartu + j * odstep), spontanicznosc, prefTrudnosc, prefNawierzchnia, czySledzony);

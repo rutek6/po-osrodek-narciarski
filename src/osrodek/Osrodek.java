@@ -73,9 +73,6 @@ public class Osrodek {
         trasy[indeksTras] = x;
         indeksTras++;
         x.getPoczatek().dodajTrase(x);
-        Trasa y = x.getPoczatek().getTrasy()[0];
-        System.out.println(y);
-
     }
 
     public void dodajWyciag(Wyciag x) {
@@ -84,8 +81,6 @@ public class Osrodek {
         wyciagi[indeksWyciagow] = x;
         indeksWyciagow++;
         x.getPoczatek().dodajWyciag(x);
-        Wyciag y = x.getPoczatek().getWyciagi()[0];
-        System.out.println(y);
         StartWyciagu noweZdarzenie = new StartWyciagu(x, new Czas(9, 0, 0));
         kolejka.dodaj(noweZdarzenie);
     }
@@ -116,4 +111,3 @@ public class Osrodek {
         }
     }
 }
-

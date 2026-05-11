@@ -66,12 +66,12 @@ public class Sportowiec {
         return prefNawierzchnia;
     }
 
-    public boolean getCzySlezdony() {
+    public boolean getCzySledzony() {
         return czySledzony;
     }
 
-    public Random getGenerator() {
-        return generator;
+    public int losujDroge(int indeks) {
+        return generator.nextInt(indeks);
     }
 
     public String toString() {

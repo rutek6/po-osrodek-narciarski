@@ -29,7 +29,7 @@ public class StartWyciagu extends Zdarzenie {
             ZejscieZWyciagu noweZdarzenie = new ZejscieZWyciagu(sportowiec, czasDotarcia, wyciag.getKoniec());
             kolejka.dodaj(noweZdarzenie);
             wyciag.zwiekszLicznikPrzejazdow();
-            if (sportowiec.getCzySlezdony()) {
+            if (sportowiec.getCzySledzony()) {
                 System.out.println(
                         this.getCzas()
                                 + ":"

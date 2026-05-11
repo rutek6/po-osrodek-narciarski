@@ -49,7 +49,7 @@ public class Wyciag extends Krawedz {
     @Override
     public void przetworzStart(Sportowiec s, Czas c, KolejkaZdarzen k) {
         oczekujacy.dodaj(s);
-        if (s.getCzySlezdony()) {
+        if (s.getCzySledzony()) {
             System.out.println(
                     c
                             + ":"

@@ -18,7 +18,7 @@ public class StartTrasy extends Zdarzenie {
     @Override
     public void przetworz(KolejkaZdarzen kolejka) {
         Czas czasDotarcia = this.getCzas().dodaj(trasa.getCzas());
-        if (sportowiec.getCzySlezdony()) {
+        if (sportowiec.getCzySledzony()) {
             System.out.println(
                     this.getCzas()
                             + ":"

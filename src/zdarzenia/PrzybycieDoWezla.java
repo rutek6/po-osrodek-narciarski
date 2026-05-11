@@ -1,7 +1,5 @@
 package zdarzenia;
 
-import java.util.Random;
-
 import infrastruktura.Krawedz;
 import infrastruktura.Trasa;
 import infrastruktura.Wezel;
@@ -21,7 +19,7 @@ public class PrzybycieDoWezla extends Zdarzenie {
         wezel = w;
     }
 
-    protected Krawedz wybierzDrogeLosowo(Random generator) {
+    protected Krawedz wybierzDrogeLosowo() {
         Trasa[] trasy = wezel.getTrasy();
         Wyciag[] wyciagi = wezel.getWyciagi();
 
@@ -33,7 +31,7 @@ public class PrzybycieDoWezla extends Zdarzenie {
             return null;
         }
 
-        int wylosowanyIndeks = generator.nextInt(sumaKrawedzi);
+        int wylosowanyIndeks = sportowiec.losujDroge(sumaKrawedzi);
 
         if (wylosowanyIndeks < ileTras) {
             return trasy[wylosowanyIndeks];
@@ -81,7 +79,7 @@ public class PrzybycieDoWezla extends Zdarzenie {
 
     @Override
     public void przetworz(KolejkaZdarzen kolejka) {
-        if (sportowiec.getCzySlezdony()) {
+        if (sportowiec.getCzySledzony()) {
             System.out.println(
                     this.getCzas() + ":" + " Sportowiec " + sportowiec.getNumer() + " przybył do węzła nr "
                             + wezel.getNumer());
@@ -89,7 +87,7 @@ public class PrzybycieDoWezla extends Zdarzenie {
 
         Krawedz wybrana;
         if (sportowiec.czyLosowac()) {
-            wybrana = wybierzDrogeLosowo(sportowiec.getGenerator());
+            wybrana = wybierzDrogeLosowo();
         } else
             wybrana = wybierzDroge();
         if (this.getCzas().compareTo(new Czas(15, 0, 0)) < 0)
