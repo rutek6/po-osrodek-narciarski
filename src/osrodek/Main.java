@@ -117,6 +117,8 @@ public class Main {
             listaGrup[i] = nowaGrupa;
             odstepy[i] = odstep;
         }
+
+        // Sportowcy
         Sportowiec[] sportowcy = new Sportowiec[ileSportowcow];
         int indeksSportowcow = 0;
         for (int i = 0; i < lGrup; i++) {
