@@ -9,12 +9,12 @@ import infrastruktura.Trasa;
 
 public class Main {
 
-    public static void parser(Osrodek osrodek) {
+    public static Osrodek parser() {
         Scanner sc = new Scanner(System.in);
 
         // Węzły
         int lWezlow = sc.nextInt();
-        osrodek.setLiczbaWezlow(lWezlow);
+        Wezel[] wezly = new Wezel[lWezlow];
         sc.nextLine();
         for (int i = 0; i < lWezlow; i++) {
             String linia = sc.nextLine().trim();
@@ -27,13 +27,13 @@ public class Main {
             if (fragmenty.length > 3 && "s".equals(fragmenty[3]))
                 komunik = true;
             Wezel nowyWezel = new Wezel(i, h, x, y, komunik);
-            osrodek.dodajWezel(nowyWezel);
+            wezly[i] = nowyWezel;
         }
 
         // Wyciągi
         int lWyciagow = sc.nextInt();
         sc.nextLine();
-        osrodek.setLiczbaWyciagow(lWyciagow);
+        Wyciag[] wyciagi = new Wyciag[lWyciagow];
         for (int i = 0; i < lWyciagow; i++) {
             String linia = sc.nextLine().trim();
             String[] fragmenty = linia.split("\\s+");
@@ -44,15 +44,15 @@ public class Main {
             int maxPas = Integer.parseInt(fragmenty[3]);
             int czas = Integer.parseInt(fragmenty[4]);
 
-            Wyciag nowyWyciag = new Wyciag(i, osrodek.getWezel(nrStart), osrodek.getWezel(nrKoniec), new Czas(czas),
+            Wyciag nowyWyciag = new Wyciag(i, wezly[nrStart], wezly[nrKoniec], new Czas(czas),
                     new Czas(odstep), maxPas);
-            osrodek.dodajWyciag(nowyWyciag);
+            wyciagi[i] = nowyWyciag;
         }
 
         // Trasy
         int lTras = sc.nextInt();
         sc.nextLine();
-        osrodek.setLiczbaTras(lTras);
+        Trasa[] trasy = new Trasa[lTras];
         for (int i = 0; i < lTras; i++) {
             String linia = sc.nextLine().trim();
             String[] fragmenty = linia.split("\\s+");
@@ -66,13 +66,13 @@ public class Main {
 
             Trasa nowaTrasa = new Trasa(
                     i,
-                    osrodek.getWezel(nrStart),
-                    osrodek.getWezel(nrKoniec),
+                    wezly[nrStart],
+                    wezly[nrKoniec],
                     new Czas(czasPrzejazdu),
                     trudnosc,
                     bazowaAtrakcyjnosc,
                     odpornosc);
-            osrodek.dodajTrasa(nowaTrasa);
+            trasy[i] = nowaTrasa;
         }
 
         // Grupy Sportowców
@@ -108,7 +108,7 @@ public class Main {
             Sportowiec nowaGrupa = new Sportowiec(
                     lSportowcow,
                     poziom,
-                    osrodek.getWezel(nrStart),
+                    wezly[nrStart],
                     new Czas(godzinaStartu),
                     spontanicznosc,
                     prefPoziom,
@@ -117,7 +117,7 @@ public class Main {
             listaGrup[i] = nowaGrupa;
             odstepy[i] = odstep;
         }
-        osrodek.setLiczbaSportowcow(ileSportowcow);
+        Sportowiec[] sportowcy = new Sportowiec[ileSportowcow];
         int indeksSportowcow = 0;
         for (int i = 0; i < lGrup; i++) {
             Sportowiec grupa = listaGrup[i];
@@ -133,17 +133,18 @@ public class Main {
             for (int j = 0; j < lSportowcow; j++) {
                 Sportowiec nowySportowiec = new Sportowiec(indeksSportowcow, poziom, wezelStartowy,
                         new Czas(czasStartu + j * odstep), spontanicznosc, prefTrudnosc, prefNawierzchnia, czySledzony);
-                osrodek.dodajSportowiec(nowySportowiec);
+                sportowcy[indeksSportowcow] = nowySportowiec;
                 indeksSportowcow++;
             }
         }
+
         sc.close();
+        return new Osrodek(wezly, wyciagi, trasy, sportowcy);
     }
 
     public static void main(String[] args) {
 
-        Osrodek osrodek = new Osrodek();
-        parser(osrodek);
+        Osrodek osrodek = parser();
         osrodek.przeprowadzSymulacje();
     }
 }

@@ -7,6 +7,7 @@ import struktury.KolejkaZdarzen;
 
 public class StartWyciagu extends Zdarzenie {
     private Wyciag wyciag;
+    public static final Czas CZAS_KONCA_WJAZDOW = new Czas(16, 0, 0);
 
     public StartWyciagu(Wyciag w, Czas c) {
         wyciag = w;
@@ -39,7 +40,7 @@ public class StartWyciagu extends Zdarzenie {
                                 + wyciag.getNumer());
             }
         }
-        if (this.getCzas().compareTo(new Czas(16, 0, 0)) < 0) {
+        if (this.getCzas().compareTo(CZAS_KONCA_WJAZDOW) < 0) {
             StartWyciagu kolejnyStart = new StartWyciagu(wyciag, this.getCzas().dodaj(odstep));
             kolejka.dodaj(kolejnyStart);
         }

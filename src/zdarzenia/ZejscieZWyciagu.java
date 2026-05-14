@@ -7,6 +7,8 @@ import osrodek.Czas;
 import struktury.KolejkaZdarzen;
 
 public class ZejscieZWyciagu extends PrzybycieDoWezla {
+    public static final Czas CZAS_KONCA = new Czas(15, 0, 0);
+
     public ZejscieZWyciagu(Sportowiec s, Czas c, Wezel w) {
         super(s, c, w);
     }
@@ -25,7 +27,7 @@ public class ZejscieZWyciagu extends PrzybycieDoWezla {
             wybrana = wybierzDrogeLosowo();
         } else
             wybrana = wybierzDroge();
-        if (this.getCzas().compareTo(new Czas(15, 0, 0)) < 0)
+        if (this.getCzas().compareTo(CZAS_KONCA) < 0)
             wybrana.przetworzStart(sportowiec, this.getCzas(), kolejka);
 
     }

@@ -7,19 +7,37 @@ import zdarzenia.*;
 
 public class Osrodek {
     private Wezel[] wezly;
-    private int indeksWezlow = 0;
     private Trasa[] trasy;
-    private int indeksTras = 0;
     private Wyciag[] wyciagi;
-    private int indeksWyciagow = 0;
     private Sportowiec[] sportowcy;
-    private int indeksSportowcow = 0;
-    private int liczbaWezlow = 0;
-    private int liczbaTras = 0;
-    private int liczbaWyciagow = 0;
-    private int liczbaSportowcow = 0;
+
     private KolejkaZdarzen kolejka = new KolejkaZdarzen();
     private static final Czas CZAS_ZAMKNIECIA = new Czas(16, 0, 0);
+
+    public Osrodek(Wezel[] wezly, Wyciag[] wyciagi, Trasa[] trasy, Sportowiec[] sportowcy) {
+        this.wezly = wezly;
+
+        // Podpinanie wyciągów
+        this.wyciagi = wyciagi;
+        for (Wyciag w : wyciagi) {
+            w.getPoczatek().dodajWyciag(w);
+            StartWyciagu noweZdarzenie = new StartWyciagu(w, new Czas(9, 0, 0));
+            kolejka.dodaj(noweZdarzenie);
+        }
+
+        // Podpinanie tras
+        this.trasy = trasy;
+        for (Trasa t : trasy) {
+            t.getPoczatek().dodajTrase(t);
+        }
+
+        // Podpinanie sportowców
+        this.sportowcy = sportowcy;
+        for (Sportowiec s : sportowcy) {
+            PrzybycieDoWezla noweZdarzenie = new PrzybycieDoWezla(s, s.getCzas(), s.getStart());
+            kolejka.dodaj(noweZdarzenie);
+        }
+    }
 
     public Wezel getWezel(int numer) {
         return wezly[numer];
@@ -37,64 +55,6 @@ public class Osrodek {
         return sportowcy[numer];
     }
 
-    public void setLiczbaWezlow(int x) {
-        liczbaWezlow = x;
-        if (wezly == null)
-            wezly = new Wezel[liczbaWezlow];
-    }
-
-    public void setLiczbaTras(int x) {
-        liczbaTras = x;
-        if (trasy == null)
-            trasy = new Trasa[liczbaTras];
-    }
-
-    public void setLiczbaWyciagow(int x) {
-        liczbaWyciagow = x;
-        if (wyciagi == null)
-            wyciagi = new Wyciag[liczbaWyciagow];
-    }
-
-    public void setLiczbaSportowcow(int x) {
-        liczbaSportowcow = x;
-        if (sportowcy == null)
-            sportowcy = new Sportowiec[liczbaSportowcow];
-    }
-
-    public void dodajWezel(Wezel x) {
-        if (wezly == null)
-            return;
-        wezly[indeksWezlow] = x;
-        indeksWezlow++;
-    }
-
-    public void dodajTrasa(Trasa x) {
-        if (trasy == null)
-            return;
-        trasy[indeksTras] = x;
-        indeksTras++;
-        x.getPoczatek().dodajTrase(x);
-    }
-
-    public void dodajWyciag(Wyciag x) {
-        if (wyciagi == null)
-            return;
-        wyciagi[indeksWyciagow] = x;
-        indeksWyciagow++;
-        x.getPoczatek().dodajWyciag(x);
-        StartWyciagu noweZdarzenie = new StartWyciagu(x, new Czas(9, 0, 0));
-        kolejka.dodaj(noweZdarzenie);
-    }
-
-    public void dodajSportowiec(Sportowiec x) {
-        if (sportowcy == null)
-            return;
-        sportowcy[indeksSportowcow] = x;
-        indeksSportowcow++;
-        PrzybycieDoWezla noweZdarzenie = new PrzybycieDoWezla(x, x.getCzas(), x.getStart());
-        kolejka.dodaj(noweZdarzenie);
-    }
-
     public void przeprowadzSymulacje() {
         while (!kolejka.czyPusta()) {
             Zdarzenie x = kolejka.wez();
@@ -103,11 +63,11 @@ public class Osrodek {
             }
             x.przetworz(kolejka);
         }
-        for (int i = 0; i < indeksTras; i++) {
+        for (int i = 0; i < trasy.length; i++) {
             System.out.println("Trasa nr: " + i + ", liczba przejazdów: " + trasy[i].getLiczbaPrzejazdow());
         }
 
-        for (int i = 0; i < indeksWyciagow; i++) {
+        for (int i = 0; i < wyciagi.length; i++) {
             System.out.println("Wyciag nr: " + i + ", liczba przejazdów: " + wyciagi[i].getLiczbaPrzejazdow());
         }
     }
